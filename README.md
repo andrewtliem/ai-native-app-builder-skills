@@ -5,6 +5,14 @@ A small skill pack for students building apps with AI. It is based on two YouTub
 The pack is intentionally **not one giant skill**. Each markdown file is a focused skill that covers one stage from *hulu ke hilir*: raw idea → intent → PRD → architecture → issues → AI prompts → loop engineering → review → testing → red team → demo → postmortem.
 
 
+
+## Article
+
+This repository accompanies ATL’s article about the AI-Native App Builder Skill Pack:
+
+- Indonesian: [Dari Vibe Coder ke Software Developer: Skill Pack AI-Native untuk Mahasiswa](https://blog.atlverse.xyz/blog/ai-native-app-builder-skills-for-students/)
+- English: [From Vibe Coder to Software Developer: An AI-Native Skill Pack for University Students](https://blog.atlverse.xyz/en/blog/ai-native-app-builder-skills-for-students/)
+
 ## Installation
 
 This repository is structured so agents that support the [skills.sh](https://skills.sh/) installer can install the pack directly from GitHub.
