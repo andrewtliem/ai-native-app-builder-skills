@@ -134,4 +134,9 @@ During implementation, students should use the loop rhythm for each issue:
 6. Fix or accept based on evidence.
 7. Record what they learned.
 
-This preserves the Google transcript’s main lesson: AI-native engineering is not about generating more code faster. It is about clearer intent, better systems, stronger verification, and human judgment.
+This skill pack is based on two YouTube talks that shaped ATL’s thinking about AI-native software engineering:
+
+- https://www.youtube.com/watch?v=q_Jq4IgYImk
+- https://www.youtube.com/watch?v=VTYx7Ex-0bA
+
+The interpretation here is ATL’s own reading of those ideas. Other educators may draw different lessons from the same videos. For ATL, the main lesson is this: AI-native engineering is not about generating more code faster. It is about clearer intent, better systems, stronger verification, and human judgment.
