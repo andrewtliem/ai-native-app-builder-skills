@@ -73,6 +73,20 @@ Each installable skill lives in a folder like:
 10-test-the-app/SKILL.md
 ```
 
+
+## Repository Layout
+
+The installable skill folders are the canonical source. Each skill lives in its own directory with a `SKILL.md` file:
+
+```text
+01-grill-my-idea/SKILL.md
+02-idea-to-intent/SKILL.md
+...
+13-postmortem/SKILL.md
+```
+
+There are no duplicate top-level numbered `.md` files; keep edits inside the matching `SKILL.md`.
+
 ## Core Mantra
 
 > **Delegate tasks, not judgment.**
@@ -101,19 +115,19 @@ docs/ai-native/
 
 Artifact chain:
 
-1. `01-grill-my-idea.md` → `docs/ai-native/01-grill-my-idea.md`
-2. `02-idea-to-intent.md` → `docs/ai-native/02-intent-brief.md`
-3. `03-intent-to-prd.md` → `docs/ai-native/03-prd.md`
-4. `04-prd-to-architecture.md` → `docs/ai-native/04-architecture.md`
-5. `05-architecture-to-issues.md` → `docs/ai-native/05-issues.md`
-6. `06-agent-rules.md` → `AGENTS.md`
-7. `07-issue-to-prompt.md` → `docs/ai-native/07-issue-prompt.md`
-8. `08-run-the-loop.md` → `docs/ai-native/08-loop-log.md`
-9. `09-review-the-code.md` → `docs/ai-native/09-code-review.md`
-10. `10-test-the-app.md` → `docs/ai-native/10-test-plan.md`
-11. `11-red-team-my-app.md` → `docs/ai-native/11-risk-review.md`
-12. `12-demo-ready.md` → `docs/ai-native/12-demo-script.md`
-13. `13-postmortem.md` → `docs/ai-native/13-postmortem.md`
+1. [`01-grill-my-idea.md`](./01-grill-my-idea/SKILL.md) → `docs/ai-native/01-grill-my-idea.md`
+2. [`02-idea-to-intent.md`](./02-idea-to-intent/SKILL.md) → `docs/ai-native/02-intent-brief.md`
+3. [`03-intent-to-prd.md`](./03-intent-to-prd/SKILL.md) → `docs/ai-native/03-prd.md`
+4. [`04-prd-to-architecture.md`](./04-prd-to-architecture/SKILL.md) → `docs/ai-native/04-architecture.md`
+5. [`05-architecture-to-issues.md`](./05-architecture-to-issues/SKILL.md) → `docs/ai-native/05-issues.md`
+6. [`06-agent-rules.md`](./06-agent-rules/SKILL.md) → `AGENTS.md`
+7. [`07-issue-to-prompt.md`](./07-issue-to-prompt/SKILL.md) → `docs/ai-native/07-issue-prompt.md`
+8. [`08-run-the-loop.md`](./08-run-the-loop/SKILL.md) → `docs/ai-native/08-loop-log.md`
+9. [`09-review-the-code.md`](./09-review-the-code/SKILL.md) → `docs/ai-native/09-code-review.md`
+10. [`10-test-the-app.md`](./10-test-the-app/SKILL.md) → `docs/ai-native/10-test-plan.md`
+11. [`11-red-team-my-app.md`](./11-red-team-my-app/SKILL.md) → `docs/ai-native/11-risk-review.md`
+12. [`12-demo-ready.md`](./12-demo-ready/SKILL.md) → `docs/ai-native/12-demo-script.md`
+13. [`13-postmortem.md`](./13-postmortem/SKILL.md) → `docs/ai-native/13-postmortem.md`
 
 Rule for agents/students:
 
@@ -142,19 +156,19 @@ This prevents hidden context loss between tools, chat sessions, or coding agents
 
 ## Pipeline
 
-1. `01-grill-my-idea.md` — challenge the raw idea.
-2. `02-idea-to-intent.md` — capture the project intent.
-3. `03-intent-to-prd.md` — create a student-friendly PRD.
-4. `04-prd-to-architecture.md` — design the simplest viable system.
-5. `05-architecture-to-issues.md` — create ordered implementation issues.
-6. `06-agent-rules.md` — create AGENTS.md / project AI rules.
-7. `07-issue-to-prompt.md` — turn one issue into a focused coding prompt.
-8. `08-run-the-loop.md` — operate one safe AI-assisted build/review/test/fix loop.
-9. `09-review-the-code.md` — review code against issue, PRD, safety, and explainability.
-10. `10-test-the-app.md` — create manual/automated test plans and evidence.
-11. `11-red-team-my-app.md` — find security, privacy, misuse, AI, reliability, and UX risks.
-12. `12-demo-ready.md` — prepare a short honest demo script.
-13. `13-postmortem.md` — reflect and improve the next project loop.
+1. [`01-grill-my-idea.md`](./01-grill-my-idea/SKILL.md) — challenge the raw idea.
+2. [`02-idea-to-intent.md`](./02-idea-to-intent/SKILL.md) — capture the project intent.
+3. [`03-intent-to-prd.md`](./03-intent-to-prd/SKILL.md) — create a student-friendly PRD.
+4. [`04-prd-to-architecture.md`](./04-prd-to-architecture/SKILL.md) — design the simplest viable system.
+5. [`05-architecture-to-issues.md`](./05-architecture-to-issues/SKILL.md) — create ordered implementation issues.
+6. [`06-agent-rules.md`](./06-agent-rules/SKILL.md) — create AGENTS.md / project AI rules.
+7. [`07-issue-to-prompt.md`](./07-issue-to-prompt/SKILL.md) — turn one issue into a focused coding prompt.
+8. [`08-run-the-loop.md`](./08-run-the-loop/SKILL.md) — operate one safe AI-assisted build/review/test/fix loop.
+9. [`09-review-the-code.md`](./09-review-the-code/SKILL.md) — review code against issue, PRD, safety, and explainability.
+10. [`10-test-the-app.md`](./10-test-the-app/SKILL.md) — create manual/automated test plans and evidence.
+11. [`11-red-team-my-app.md`](./11-red-team-my-app/SKILL.md) — find security, privacy, misuse, AI, reliability, and UX risks.
+12. [`12-demo-ready.md`](./12-demo-ready/SKILL.md) — prepare a short honest demo script.
+13. [`13-postmortem.md`](./13-postmortem/SKILL.md) — reflect and improve the next project loop.
 
 ## Phase View
 
