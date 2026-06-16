@@ -10,8 +10,7 @@ The pack is intentionally **not one giant skill**. Each markdown file is a focus
 
 This repository accompanies ATL’s article about the AI-Native App Builder Skill Pack:
 
-- Indonesian: [Dari Vibe Coder ke Software Developer: Skill Pack AI-Native untuk Mahasiswa](https://blog.atlverse.xyz/blog/ai-native-app-builder-skills-for-students/)
-- English: [From Vibe Coder to Software Developer: An AI-Native Skill Pack for University Students](https://blog.atlverse.xyz/en/blog/ai-native-app-builder-skills-for-students/)
+- [From Vibe Coder to Software Developer: An AI-Native Skill Pack for University Students](https://blog.atlverse.xyz/en/blog/ai-native-app-builder-skills-for-students/)
 
 ## Installation
 
