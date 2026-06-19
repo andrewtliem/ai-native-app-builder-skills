@@ -45,6 +45,89 @@ clear intent → structured artifacts → small AI-assisted loops → verified s
 
 ---
 
+## Choose Your Path
+
+You do **not** need to use all 18 skills for every project.
+
+Think of this repo as a toolkit with three paths:
+
+| Path | Best For | Skills Used | Outcome |
+|---|---|---:|---|
+| **Mini Path** | 1-week assignment, prototype, beginner practice | 6 | Simple app with basic intent, prompt, test, and demo |
+| **Class Project Path** | Normal course project | 12 | PRD, architecture, implementation loop, review, tests, demo, reflection |
+| **Capstone Path** | Final project, research, serious portfolio work | 18 | Full spec-driven workflow with traceability, risk review, and convergence |
+
+### Path 1 — Mini Path
+
+Use this for small assignments or first-time students.
+
+```text
+idea-to-intent
+intent-to-prd
+issue-to-prompt
+run-the-loop
+test-the-app
+demo-ready
+```
+
+**Use when:** the project is small, the student is new, or the goal is to practice AI-assisted building without overwhelming process.
+
+**Minimum artifacts:**
+
+```text
+docs/ai-native/02-intent-brief.md
+docs/ai-native/03-prd.md
+docs/ai-native/07-issue-prompt.md
+docs/ai-native/08-loop-log.md
+docs/ai-native/10-test-plan.md
+docs/ai-native/12-demo-script.md
+```
+
+### Path 2 — Class Project Path
+
+Use this for a normal multi-week class project.
+
+```text
+grill-my-idea
+idea-to-intent
+intent-to-prd
+clarify-prd
+prd-to-architecture
+architecture-to-issues
+issue-to-prompt
+run-the-loop
+review-the-code
+test-the-app
+demo-ready
+postmortem
+```
+
+**Use when:** students need enough structure to prevent vibe coding, but do not need the full capstone-level audit trail.
+
+### Path 3 — Capstone Path
+
+Use this for final projects, research prototypes, or serious portfolio apps.
+
+```text
+all 18 skills
+```
+
+This adds:
+
+```text
+project-constitution
+analyze-artifacts
+traceability-matrix
+red-team-my-app
+converge-the-app
+```
+
+**Use when:** the project needs stronger evidence, grading traceability, security/privacy review, or a clear “ready / not ready” decision.
+
+> Recommendation: start with the Mini Path. Add more skills only when the project becomes serious enough to need them.
+
+---
+
 ## Repository Structure
 
 ```text
@@ -181,7 +264,11 @@ Do not run all skills in one prompt. Move step by step.
 
 ## The Bundle Tutorial
 
-The easiest way to use this repository is by following bundles.
+The easiest way to use this repository is by following bundles **after you choose a path**.
+
+- If you are new, start with the **Mini Path** above.
+- If you are doing a normal class project, use the **Class Project Path** and selected bundles.
+- If this is a capstone or final project, use the full bundle sequence.
 
 | Bundle | Use When | Main Output |
 |---|---|---|
