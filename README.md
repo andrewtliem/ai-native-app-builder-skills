@@ -2,9 +2,16 @@
 
 A student-friendly skill pack for building software with AI while preserving **human judgment, traceability, verification, and reflection**.
 
-The pack is intentionally **not one giant skill**. Each `SKILL.md` is a focused stage from *hulu ke hilir*: raw idea → intent → PRD → architecture → issues → AI prompts → loop engineering → review → testing → red team → demo → postmortem.
+The pack is organized into four kinds of content:
 
-This repo now also includes **bundles**, inspired partly by GitHub Spec Kit’s spec-driven workflow, so instructors can teach the skills in smaller classroom phases.
+```text
+skills/      actual installable skills
+bundles/     classroom learning paths that group skills
+templates/   reusable artifact worksheets
+examples/    sample student-project artifact chains
+```
+
+This cleaner layout avoids confusing root-level numbered folders while keeping all skills installable through `skills.sh`.
 
 ## Article
 
@@ -129,31 +136,54 @@ converge-the-app
 
 ## Repository Layout
 
-The installable skill folders are the canonical source. Existing numbered skills remain in place for compatibility. New bundle docs and templates are non-installable teaching aids.
-
 ```text
-01-grill-my-idea/SKILL.md
-02-idea-to-intent/SKILL.md
-03-intent-to-prd/SKILL.md
-04-prd-to-architecture/SKILL.md
-05-architecture-to-issues/SKILL.md
-06-agent-rules/SKILL.md
-07-issue-to-prompt/SKILL.md
-08-run-the-loop/SKILL.md
-09-review-the-code/SKILL.md
-10-test-the-app/SKILL.md
-11-red-team-my-app/SKILL.md
-12-demo-ready/SKILL.md
-13-postmortem/SKILL.md
-14-project-constitution/SKILL.md
-15-clarify-prd/SKILL.md
-16-analyze-artifacts/SKILL.md
-17-traceability-matrix/SKILL.md
-18-converge-the-app/SKILL.md
+skills/
+├── grill-my-idea/SKILL.md
+├── idea-to-intent/SKILL.md
+├── intent-to-prd/SKILL.md
+├── prd-to-architecture/SKILL.md
+├── architecture-to-issues/SKILL.md
+├── agent-rules/SKILL.md
+├── issue-to-prompt/SKILL.md
+├── run-the-loop/SKILL.md
+├── review-the-code/SKILL.md
+├── test-the-app/SKILL.md
+├── red-team-my-app/SKILL.md
+├── demo-ready/SKILL.md
+├── postmortem/SKILL.md
+├── project-constitution/SKILL.md
+├── clarify-prd/SKILL.md
+├── analyze-artifacts/SKILL.md
+├── traceability-matrix/SKILL.md
+└── converge-the-app/SKILL.md
+
 bundles/
 templates/
 examples/
 ```
+
+## Skill Index
+
+| # | Skill | Artifact |
+|---:|---|---|
+| 01 | [`grill-my-idea`](./skills/grill-my-idea/SKILL.md) | `docs/ai-native/01-grill-my-idea.md` |
+| 02 | [`idea-to-intent`](./skills/idea-to-intent/SKILL.md) | `docs/ai-native/02-intent-brief.md` |
+| 03 | [`intent-to-prd`](./skills/intent-to-prd/SKILL.md) | `docs/ai-native/03-prd.md` |
+| 04 | [`project-constitution`](./skills/project-constitution/SKILL.md) | `docs/ai-native/14-project-constitution.md` |
+| 05 | [`clarify-prd`](./skills/clarify-prd/SKILL.md) | `docs/ai-native/15-clarification-log.md` |
+| 06 | [`prd-to-architecture`](./skills/prd-to-architecture/SKILL.md) | `docs/ai-native/04-architecture.md` |
+| 07 | [`architecture-to-issues`](./skills/architecture-to-issues/SKILL.md) | `docs/ai-native/05-issues.md` |
+| 08 | [`analyze-artifacts`](./skills/analyze-artifacts/SKILL.md) | `docs/ai-native/16-artifact-analysis.md` |
+| 09 | [`agent-rules`](./skills/agent-rules/SKILL.md) | `AGENTS.md` |
+| 10 | [`issue-to-prompt`](./skills/issue-to-prompt/SKILL.md) | `docs/ai-native/07-issue-prompt.md` |
+| 11 | [`run-the-loop`](./skills/run-the-loop/SKILL.md) | `docs/ai-native/08-loop-log.md` |
+| 12 | [`review-the-code`](./skills/review-the-code/SKILL.md) | `docs/ai-native/09-code-review.md` |
+| 13 | [`test-the-app`](./skills/test-the-app/SKILL.md) | `docs/ai-native/10-test-plan.md` |
+| 14 | [`traceability-matrix`](./skills/traceability-matrix/SKILL.md) | `docs/ai-native/17-traceability-matrix.md` |
+| 15 | [`red-team-my-app`](./skills/red-team-my-app/SKILL.md) | `docs/ai-native/11-risk-review.md` |
+| 16 | [`converge-the-app`](./skills/converge-the-app/SKILL.md) | `docs/ai-native/18-convergence-report.md` |
+| 17 | [`demo-ready`](./skills/demo-ready/SKILL.md) | `docs/ai-native/12-demo-script.md` |
+| 18 | [`postmortem`](./skills/postmortem/SKILL.md) | `docs/ai-native/13-postmortem.md` |
 
 ## Artifact System
 
@@ -164,29 +194,6 @@ Default project artifact folder:
 ```text
 docs/ai-native/
 ```
-
-### Artifact Chain
-
-| # | Skill | Artifact |
-|---:|---|---|
-| 01 | [`grill-my-idea`](./01-grill-my-idea/SKILL.md) | `docs/ai-native/01-grill-my-idea.md` |
-| 02 | [`idea-to-intent`](./02-idea-to-intent/SKILL.md) | `docs/ai-native/02-intent-brief.md` |
-| 03 | [`intent-to-prd`](./03-intent-to-prd/SKILL.md) | `docs/ai-native/03-prd.md` |
-| 14 | [`project-constitution`](./14-project-constitution/SKILL.md) | `docs/ai-native/14-project-constitution.md` |
-| 15 | [`clarify-prd`](./15-clarify-prd/SKILL.md) | `docs/ai-native/15-clarification-log.md` |
-| 04 | [`prd-to-architecture`](./04-prd-to-architecture/SKILL.md) | `docs/ai-native/04-architecture.md` |
-| 05 | [`architecture-to-issues`](./05-architecture-to-issues/SKILL.md) | `docs/ai-native/05-issues.md` |
-| 16 | [`analyze-artifacts`](./16-analyze-artifacts/SKILL.md) | `docs/ai-native/16-artifact-analysis.md` |
-| 06 | [`agent-rules`](./06-agent-rules/SKILL.md) | `AGENTS.md` |
-| 07 | [`issue-to-prompt`](./07-issue-to-prompt/SKILL.md) | `docs/ai-native/07-issue-prompt.md` |
-| 08 | [`run-the-loop`](./08-run-the-loop/SKILL.md) | `docs/ai-native/08-loop-log.md` |
-| 09 | [`review-the-code`](./09-review-the-code/SKILL.md) | `docs/ai-native/09-code-review.md` |
-| 10 | [`test-the-app`](./10-test-the-app/SKILL.md) | `docs/ai-native/10-test-plan.md` |
-| 17 | [`traceability-matrix`](./17-traceability-matrix/SKILL.md) | `docs/ai-native/17-traceability-matrix.md` |
-| 11 | [`red-team-my-app`](./11-red-team-my-app/SKILL.md) | `docs/ai-native/11-risk-review.md` |
-| 18 | [`converge-the-app`](./18-converge-the-app/SKILL.md) | `docs/ai-native/18-convergence-report.md` |
-| 12 | [`demo-ready`](./12-demo-ready/SKILL.md) | `docs/ai-native/12-demo-script.md` |
-| 13 | [`postmortem`](./13-postmortem/SKILL.md) | `docs/ai-native/13-postmortem.md` |
 
 Rule for agents/students:
 

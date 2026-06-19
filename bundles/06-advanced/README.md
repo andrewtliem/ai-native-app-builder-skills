@@ -23,3 +23,7 @@
 ## Teaching Note
 
 Students should run these skills one at a time, read the saved artifact, make a human decision, revise if needed, then continue. The bundle is a teaching path, not an autopilot.
+
+## Repository Paths
+
+Installable skills live under `skills/<skill-name>/SKILL.md`. This bundle is only a learning path; it does not duplicate the skill content.
