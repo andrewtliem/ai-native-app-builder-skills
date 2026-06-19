@@ -79,6 +79,14 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 ```markdown
 # Architecture Plan
 
+## Sources Read
+- ...
+
+## Requirement Mapping
+| Requirement / Story | Architecture Support | Notes |
+|---|---|---|
+| FR-001 / US-001 | ... | ... |
+
 ## Stack Choice
 ...
 
@@ -93,7 +101,19 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 1. ...
 
 ## Data Model
-- Entity: fields...
+| Entity | Fields | Relationships | Validation |
+|---|---|---|---|
+| ... | ... | ... | ... |
+
+## Contracts
+| Contract | Input | Output | Error States | Requirements |
+|---|---|---|---|---|
+| ... | ... | ... | ... | FR-001 |
+
+## Research Notes
+| Decision | Option Chosen | Alternatives | Rationale |
+|---|---|---|---|
+| ... | ... | ... | ... |
 
 ## Key Routes / Screens
 - ...
@@ -123,6 +143,9 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 
 - [ ] Architecture is simpler than the maximum possible solution.
 - [ ] Every system part has a reason.
+- [ ] Architecture maps back to `US-###`, `FR-###`, or `SC-###` IDs.
+- [ ] Data model and contracts are explicit where relevant.
+- [ ] Technical decisions include rationale and alternatives considered.
 - [ ] Data flow is understandable.
 - [ ] Security/privacy risks are named.
 - [ ] Student can explain the architecture verbally.

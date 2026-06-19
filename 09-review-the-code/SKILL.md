@@ -94,6 +94,11 @@ Pass / Pass with fixes / Do not pass
 ## Matches the Issue?
 ...
 
+## Requirement Coverage
+| Requirement / Story | Evidence in Code | Status |
+|---|---|---|
+| FR-001 / US-001 | ... | Covered / Partial / Missing |
+
 ## Matches the PRD?
 ...
 
@@ -133,6 +138,7 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 ## Quality Checklist
 
 - [ ] Review references the issue and PRD.
+- [ ] Review maps code changes to relevant `US-###`, `FR-###`, or `SC-###` IDs.
 - [ ] Findings are prioritized.
 - [ ] Unrelated changes are checked.
 - [ ] Security/privacy are considered.

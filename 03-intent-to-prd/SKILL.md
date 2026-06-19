@@ -93,13 +93,22 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 - ...
 
 ## User Stories
-- As a ..., I want ..., so that ...
+### US-001 — [Title] (Priority: P1)
+**User need:** As a ..., I want ..., so that ...
+**Why this priority:** ...
+**Independent Test:** ...
+
+**Acceptance Scenarios:**
+1. Given ..., When ..., Then ...
 
 ## Core User Flows
 1. ...
 
 ## Functional Requirements
-- FR1: ...
+- **FR-001**: The system MUST ...
+
+## Success Criteria
+- **SC-001**: [Measurable outcome that can be verified]
 
 ## Non-Functional Requirements
 - Security: ...
@@ -107,7 +116,7 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 - Accessibility: ...
 
 ## Acceptance Criteria
-- ...
+- Acceptance criteria should reference `US-###`, `FR-###`, or `SC-###` where possible.
 
 ## Risks and Open Questions
 - ...
@@ -128,6 +137,9 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 
 - [ ] PRD matches the Intent Brief.
 - [ ] Requirements are testable.
+- [ ] User stories use `US-###` IDs and include independent tests.
+- [ ] Functional requirements use `FR-###` IDs.
+- [ ] Success criteria use `SC-###` IDs and are measurable.
 - [ ] Out-of-scope items exist.
 - [ ] User flows are concrete.
 - [ ] Acceptance criteria are clear enough for review.

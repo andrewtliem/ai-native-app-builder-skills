@@ -89,6 +89,7 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 
 ## Must-Pass Tests
 ### Test 1: ...
+**Verifies:** FR-001 / SC-001 / US-001
 **Steps:** ...
 **Expected Result:** ...
 
@@ -122,6 +123,7 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 ## Quality Checklist
 
 - [ ] Every major acceptance criterion has a test.
+- [ ] Every test names the `US-###`, `FR-###`, or `SC-###` it verifies.
 - [ ] Failure cases are included.
 - [ ] Expected result is clear.
 - [ ] Evidence to collect is listed.

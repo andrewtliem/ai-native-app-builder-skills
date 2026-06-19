@@ -79,6 +79,11 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 # Implementation Issues
 
 ## Issue 1: ...
+**Task ID:** T001
+**User Story:** US-001
+**Requirement IDs:** FR-001, SC-001
+**Priority:** P1
+**Parallelizable:** Yes / No
 **Goal:** ...
 **Depends on:** none / Issue X
 **Likely Files:** ...
@@ -109,6 +114,9 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 
 - [ ] Each issue has one main goal.
 - [ ] Issues are ordered.
+- [ ] Each issue has a `T###` task ID.
+- [ ] Each issue references relevant `US-###`, `FR-###`, or `SC-###` IDs.
+- [ ] Each issue names likely files or explicitly says they are unknown.
 - [ ] Acceptance criteria are checkable.
 - [ ] Verification steps are included.
 - [ ] Human judgment is separated from AI work.
