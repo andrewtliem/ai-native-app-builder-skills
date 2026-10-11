@@ -8,9 +8,9 @@
 
 | Skill | Role |
 |---|---|
-| `01-grill-my-idea` | Challenge the raw idea before PRD or coding. |
-| `02-idea-to-intent` | Capture users, problem, constraints, tradeoffs, and success criteria. |
-| `03-intent-to-prd` | Create a PRD with user stories, requirements, and acceptance criteria. |
+| `grill-my-idea` | Challenge the raw idea before PRD or coding. |
+| `idea-to-intent` | Capture users, problem, constraints, tradeoffs, and success criteria. |
+| `intent-to-prd` | Create a PRD with user stories, requirements, and acceptance criteria. |
 
 ## Expected Student Artifacts
 

@@ -16,7 +16,7 @@
 | Requirement | User Story | Architecture Component | Issue / Task | Test / Check | Evidence | Status |
 |---|---|---|---|---|---|---|
 | FR-001 | US-001 | TaskForm | T002 | Test 1 | screenshot / manual check | Covered |
-| FR-002 | US-001 | TaskForm validation | T002 | Test 2 | validation screenshot | Covered |
+| FR-002 | US-001 | TaskForm validation | T002 | Test 2, Test 2b | validation screenshot | Covered |
 | FR-003 | US-001 | TaskList | T003 | Test 1 | list screenshot | Covered |
 | FR-004 | US-002 | TaskItem | T003 | Test 3 | manual check | Covered |
 | FR-005 | US-003 | TaskFilters | T004 | Test 5 | manual check | Covered |

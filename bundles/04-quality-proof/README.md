@@ -8,10 +8,10 @@
 
 | Skill | Role |
 |---|---|
-| `10-test-the-app` | Create manual and automated test plans with evidence. |
-| `17-traceability-matrix` | Map requirements to stories, issues, tests, and evidence. |
-| `11-red-team-my-app` | Find security, privacy, misuse, reliability, accessibility, and UX risks. |
-| `18-converge-the-app` | Compare the current implementation against the intended artifacts and list remaining work. |
+| `test-the-app` | Create manual and automated test plans with evidence. |
+| `traceability-matrix` | Map requirements to stories, issues, tests, and evidence. |
+| `red-team-my-app` | Find security, privacy, misuse, reliability, accessibility, and UX risks. |
+| `converge-the-app` | Compare the current implementation against the intended artifacts and list remaining work. |
 
 ## Expected Student Artifacts
 

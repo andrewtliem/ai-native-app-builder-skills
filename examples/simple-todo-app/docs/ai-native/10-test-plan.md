@@ -21,6 +21,12 @@ Manual test plan for v1 classroom demo.
 **Steps:** Leave title empty, enter course “MIS”, click Add.  
 **Expected Result:** Validation message appears and no task is created.
 
+### Test 2b — Reject Whitespace-Only Title
+**Verifies:** US-001, FR-002  
+**Steps:** Enter title “   ” (spaces only), course “MIS”, click Add.  
+**Expected Result:** Validation message appears and no task is created.  
+**Origin:** Found by the student's wrong prediction in the explanation check (`09-code-review.md`).
+
 ### Test 3 — Complete Task
 **Verifies:** US-002, FR-004, SC-002  
 **Steps:** Click Complete on an incomplete task.  

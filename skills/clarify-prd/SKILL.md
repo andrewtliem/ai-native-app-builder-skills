@@ -1,7 +1,7 @@
 ---
 name: clarify-prd
 description: Use this skill to identify underspecified areas in a student PRD by asking up to five targeted clarification questions before architecture or coding.
-version: 1.0.0
+version: 1.1.0
 author: ATL / AI-Native App Builder Skill Pack
 ---
 
@@ -20,6 +20,7 @@ Reduce ambiguity before design and implementation. This skill turns vague PRD la
 - **Verification is the bottleneck:** every claim should lead to a check, test, or evidence item.
 - **Artifacts are project memory:** if it is not saved to disk, it is not part of the project memory.
 - **Small loops beat big guesses:** clarify, build, test, review, and revise in small steps.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 
@@ -33,14 +34,23 @@ Reduce ambiguity before design and implementation. This skill turns vague PRD la
 - Intent Brief if needed.
 - Optional course constraints.
 
+## Modes
+
+**Classroom mode (default).** The student answers each question in their own words **before** seeing any AI default. Use this mode unless the instructor or user explicitly asks for practitioner mode.
+
+**Practitioner mode (opt-in).** The AI may show its recommended default together with the question. Answers that match the default are tagged `[confirmed]`, not `[student]`.
+
 ## Process
 
 1. Load the required upstream artifacts from disk.
 2. Preserve student intent; do not invent a different project.
-3. Produce a concrete, reviewable artifact using the output format below.
-4. Mark uncertainty explicitly instead of hiding it.
-5. Save the artifact to the required path.
-6. End with `Saved artifact:` and `Next recommended skill:`.
+3. Scan the PRD for ambiguity and pick at most five questions that change architecture, data, tests, UX, security, or scope.
+4. Ask **one question at a time**. In classroom mode, show only the question and why it matters. Wait for the student's answer.
+5. After the student answers, reveal the AI default and its reason. Ask whether the student wants to keep their answer or change it.
+6. Record the student's first answer, the AI default, the final decision, and — if the student changed their answer — the student's reason in their own words.
+7. Tag each final decision: `[student]` if it is the student's own answer, `[confirmed]` if the student switched to the AI default.
+8. Add the decisions back to the PRD with the same tags, and mark uncertainty explicitly instead of hiding it.
+9. Save the artifact to the required path and end with `Saved artifact:` and `Next recommended skill:`.
 
 ## Artifact Discipline
 
@@ -85,14 +95,20 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 
 ## Clarification Questions
 
-Ask at most 5 questions. For each question include why it matters and recommended default.
+Mode: Classroom / Practitioner
 
-| # | Question | Why It Matters | Recommended Default | Student Answer |
-|---|---|---|---|---|
-| Q1 | ... | ... | ... | ... |
+Ask at most 5 questions, one at a time. In classroom mode the student answers before the AI default is shown.
+
+| # | Question | Why It Matters | Student First Answer | AI Default (shown after) | Final Decision | Reason if Changed (student's words) | Tag |
+|---|---|---|---|---|---|---|---|
+| Q1 | ... | ... | ... | ... | ... | ... | `[student]` / `[confirmed]` |
+
+## Default Match Summary
+- Final decisions identical to the AI default: <n> of <total>
+- If every decision matches the default, note it for the instructor. Matching is not wrong, but the student should be able to explain each choice.
 
 ## Decisions Added Back to PRD
-- ...
+- ... `[student]` / `[confirmed]`
 
 ## Remaining Open Questions
 - ...
@@ -102,6 +118,7 @@ Ask at most 5 questions. For each question include why it matters and recommende
 
 ```text
 Saved artifact: docs/ai-native/15-clarification-log.md
+Default matches: <n> of <total>
 Next recommended skill: <next-skill-or-human-review>
 ```
 
@@ -111,8 +128,10 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 
 - [ ] No more than five high-impact questions.
 - [ ] Questions materially affect design, tests, security, UX, or scope.
-- [ ] Each question has a recommended default.
-- [ ] Student answers are recorded.
+- [ ] Questions were asked one at a time.
+- [ ] In classroom mode, the student's first answer was recorded before the AI default was shown.
+- [ ] Each question has an AI default with a reason, revealed after the student answered.
+- [ ] Every final decision carries a provenance tag, and changed answers include the student's reason.
 - [ ] Remaining uncertainty is explicit.
 
 ## Common Pitfalls
@@ -120,9 +139,10 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 1. **Asking cosmetic questions.** Only ask questions that change implementation or verification.
 2. **Asking too many questions.** Students need focus, not a survey.
 3. **Failing to update the PRD.** Clarifications must become project memory.
+4. **Leading with the default.** Showing the recommendation first turns the student's answer into a rubber stamp.
 
 ## Student Prompt Template
 
 ```text
-Use `clarify-prd`. Read `docs/ai-native/03-prd.md` first. Identify underspecified areas and ask up to five targeted questions. Save the log to `docs/ai-native/15-clarification-log.md`.
+Use `clarify-prd`. Read `docs/ai-native/03-prd.md` first. Identify underspecified areas and ask up to five targeted questions in classroom mode: one at a time, and show your default only after I answer. Save the log to `docs/ai-native/15-clarification-log.md`.
 ```

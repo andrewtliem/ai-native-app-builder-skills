@@ -27,10 +27,13 @@
 
 ## How AI Misled
 - Suggested a priority field that was not requested in the PRD.
+- Recommended making the due date required; the student rejected it because it conflicted with SC-001 (add a task in under 30 seconds).
+- Its validation code looked correct but accepted a title made only of spaces. The bug surfaced only because the student had to predict the edge case before reading the AI review.
 - Could have expanded scope too quickly without the constitution.
 
 ## What Was Verified
 - Task creation and validation were manually verified in the example notes.
+- 2 of 3 clarification decisions matched the AI default; the student gave a reason for each change and for the one rejection.
 - Traceability shows every FR maps to at least one issue and test/check.
 
 ## What Should Improve Next Time

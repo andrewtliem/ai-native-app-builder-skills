@@ -20,6 +20,7 @@ Close the gap between “the app runs” and “the app satisfies the intended r
 - **Verification is the bottleneck:** every claim should lead to a check, test, or evidence item.
 - **Artifacts are project memory:** if it is not saved to disk, it is not part of the project memory.
 - **Small loops beat big guesses:** clarify, build, test, review, and revise in small steps.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 

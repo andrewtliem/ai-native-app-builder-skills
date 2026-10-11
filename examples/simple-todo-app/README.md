@@ -38,3 +38,8 @@ This is not meant to be perfect production documentation. It is a compact classr
 - small implementation issues (`T###`)
 - traceability from intent to evidence
 - honest limitations and postmortem
+- decision provenance: every decision tagged `[student]`, `[ai-proposed]`, or `[confirmed]`
+- the student **rejecting** AI suggestions with reasons (instructor as secondary user and priority field in `02-intent-brief.md`, required due date in `15-clarification-log.md`)
+- an interactive grill transcript with the student's answers saved verbatim (`01-grill-my-idea.md`)
+- a read-back sequence diagram and assumption table (`04-architecture.md`)
+- an explanation check where the student's wrong prediction exposed a real bug (`09-code-review.md`, fixed in `08-loop-log.md`)

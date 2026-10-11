@@ -234,12 +234,13 @@ Rule:
 Ask your AI assistant:
 
 ```text
-Use the grill-my-idea skill.
+Use the grill-my-idea skill in classroom mode.
 
 My app idea is:
 [write your idea here]
 
-Challenge the idea and save the artifact to docs/ai-native/01-grill-my-idea.md.
+Interview me one question at a time and wait for my answer. Do not suggest answers.
+Save my answers verbatim to docs/ai-native/01-grill-my-idea.md.
 ```
 
 Then continue:
@@ -302,10 +303,10 @@ docs/ai-native/03-prd.md
 ### Student prompts
 
 ```text
-Use grill-my-idea.
+Use grill-my-idea in classroom mode.
 My app idea is: [idea].
-Challenge the idea before I write a PRD.
-Save the output to docs/ai-native/01-grill-my-idea.md.
+Interview me one question at a time before I write a PRD. Do not suggest answers.
+Save my answers verbatim to docs/ai-native/01-grill-my-idea.md.
 ```
 
 ```text
@@ -367,7 +368,8 @@ Save the output to docs/ai-native/14-project-constitution.md.
 ```text
 Use clarify-prd.
 Read docs/ai-native/03-prd.md and docs/ai-native/14-project-constitution.md first.
-Ask up to 5 high-impact clarification questions.
+Ask up to 5 high-impact clarification questions, one at a time.
+Show your recommended default only after I answer.
 Save the log to docs/ai-native/15-clarification-log.md.
 ```
 
@@ -457,7 +459,8 @@ Save the log to docs/ai-native/08-loop-log.md.
 ```text
 Use review-the-code.
 Read the issue, PRD, architecture, and loop log.
-Review the implementation against the requirement IDs and flag must-fix items.
+Before reviewing, ask me to explain one block and predict one edge case in my own words.
+Then review the implementation against the requirement IDs and flag must-fix items.
 Save the review to docs/ai-native/09-code-review.md.
 ```
 
@@ -630,6 +633,8 @@ Possible advanced workflows:
 | 17 | [`demo-ready`](./skills/demo-ready/SKILL.md) | Prepare final demo | `docs/ai-native/12-demo-script.md` |
 | 18 | [`postmortem`](./skills/postmortem/SKILL.md) | Reflect and improve | `docs/ai-native/13-postmortem.md` |
 
+> **About artifact numbers:** file numbers (`01-` … `18-`) are stable IDs, not run order. For example, `14-project-constitution.md` and `15-clarification-log.md` are created before `04-architecture.md`. Follow the bundle order for sequence.
+
 ---
 
 ## Artifact System
@@ -650,6 +655,47 @@ Why this matters:
 - AI agents hallucinate if they rely on memory.
 - Project artifacts create a visible evidence trail.
 - Teachers can grade process, not only the final app.
+
+---
+
+## Student Judgment Guards
+
+The pipeline makes it easy for AI to draft every artifact. These guards make sure the decisions inside those artifacts are still the student's.
+
+### Decision provenance
+
+Every line that states a user, problem, scope, constraint, requirement, success criterion, or architecture decision carries a tag:
+
+| Tag | Meaning |
+|---|---|
+| `[student]` | The student said this in their own words. |
+| `[ai-proposed]` | AI suggested it and the student has not accepted it yet. |
+| `[confirmed]` | AI suggested it and the student explicitly accepted it. |
+
+`idea-to-intent`, `intent-to-prd`, `project-constitution`, and `prd-to-architecture` run a **Decision Provenance Gate**: they stop when an upstream artifact still has `[ai-proposed]` items, and they walk the student through every new AI proposal before saving. Each of these skills reports `Open ai-proposed items` in its final response.
+
+### Classroom mode (default)
+
+| Skill | Classroom mode behavior |
+|---|---|
+| `grill-my-idea` | An interview, not a questionnaire: one question at a time, no suggested answers, student answers saved verbatim. |
+| `clarify-prd` | The student answers first; the AI default is shown afterwards. The log records the first answer, the default, the final decision, and the student's reason for any change, plus a default-match count. |
+| `review-the-code` | Before the AI review, the student explains one block and predicts one edge case. A loop cannot be accepted while the explanation check is `Not yet`. |
+
+Practitioner mode is available when the instructor or user asks for it explicitly.
+
+### Read-back diagrams
+
+`prd-to-architecture` adds Mermaid diagrams only where prose is easy to misread (entity lifecycles, multi-party flows, related entities). Every behavior a diagram shows that the PRD does not state is listed as a read-back assumption for the student to confirm or reject. A rejection means the PRD needs fixing before coding.
+
+### What instructors can check
+
+- Grill transcript: did the student answer, or did the AI?
+- Count of `[student]` vs `[confirmed]` decisions in the Intent Brief and PRD.
+- Default-match count in the clarification log, and the reasons for changes.
+- Explanation check rating in each code review.
+
+See [`examples/simple-todo-app`](./examples/simple-todo-app/README.md) for a full chain where the student rejects AI suggestions and a wrong prediction exposes a real bug.
 
 ---
 
@@ -723,9 +769,10 @@ Suggested grading categories:
 
 | Category | Evidence |
 |---|---|
+| Student judgment | Grill transcript + provenance tags + clarification reasons |
 | Intent clarity | Intent Brief + PRD |
 | Design quality | Architecture + issues |
-| AI process discipline | Prompt + loop log + code review |
+| AI process discipline | Prompt + loop log + code review (explanation check) |
 | Verification | Test plan + traceability matrix |
 | Responsibility | Risk review + convergence report + postmortem |
 
@@ -747,6 +794,12 @@ Suggested grading categories:
 
 5. **Accepting AI code without review**  
    Students must understand and explain the code they submit.
+
+6. **Rubber-stamping AI defaults**  
+   Answer first, then compare with the AI's recommendation. Record a reason whenever you switch.
+
+7. **Letting answers live only in chat**  
+   Grill and clarification answers must be saved verbatim in the artifact, or the next skill cannot use them.
 
 ---
 

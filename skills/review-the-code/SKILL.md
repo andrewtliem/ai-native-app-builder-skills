@@ -1,7 +1,7 @@
 ---
 name: review-the-code
 description: Use this skill to review student or AI-generated code against the issue, PRD, architecture, readability, security, privacy, and explainability requirements.
-version: 1.0.0
+version: 1.1.0
 author: ATL / AI-Native App Builder Skill Pack
 ---
 
@@ -23,6 +23,7 @@ These skills are based on two YouTube talks about AI-native software engineering
 - **No vibe coding:** do not jump from idea directly to generated code without intent, design, and review.
 - **Small loops beat big guesses:** move one step at a time, verify, then continue.
 - **AI amplifies the system:** unclear intent creates faster confusion; clear intent creates faster learning.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 
@@ -42,15 +43,33 @@ These skills are based on two YouTube talks about AI-native software engineering
 
 ## Process
 
-1. Compare implementation to the issue.
-2. Compare behavior to PRD acceptance criteria.
-3. Check for unrelated changes.
-4. Review readability and maintainability.
-5. Check security/privacy risks.
-6. Check missing tests or weak verification.
-7. Ask if the student can explain the code.
-8. Classify findings as must-fix, should-fix, or note.
-9. Recommend the next loop decision: accept, fix, rollback, split, or ask for help.
+### Part A — Student reads first (before any AI review)
+
+1. Pick **one** changed function or block that carries the most logic for this issue, and **one** edge case relevant to it (empty input, missing data, invalid value, failure of storage or network, and so on).
+2. Ask the student, without showing any AI explanation or review yet:
+   - What does this code do, and why is it written this way? (own words)
+   - What happens for this edge case? (a concrete prediction: output, state, or error)
+   - What is one thing in this change you suspect could be wrong?
+3. Record the student's answers **verbatim**. Do not correct them yet.
+4. Check the prediction by tracing the code or running it. Record whether the prediction was correct.
+5. Rate the explanation: **Understood** (explanation and prediction correct), **Partial** (one of them wrong), or **Not yet** (both wrong or no answer).
+
+### Part B — Review
+
+6. Compare implementation to the issue.
+7. Compare behavior to PRD acceptance criteria.
+8. Check for unrelated changes.
+9. Review readability and maintainability.
+10. Check security/privacy risks.
+11. Check missing tests or weak verification.
+12. Compare the student's suspicion from Part A with what the review found.
+13. Classify findings as must-fix, should-fix, or note.
+14. Recommend the next loop decision: accept, fix, rollback, split, or ask for help.
+
+### Explanation gate
+
+- A loop cannot be **Accepted** while the explanation check is **Not yet**.
+- For **Partial** or **Not yet**, the next step is a tutoring pass: the AI asks guiding questions and lets the student trace the code; it does not simply explain the answer. Then repeat Part A on the same block.
 
 ## Artifact Discipline
 
@@ -117,8 +136,17 @@ Pass / Pass with fixes / Do not pass
 ## Missing Verification
 - ...
 
-## Student Explanation Check
-The student should be able to explain: ...
+## Student Explanation Check (written before the AI review)
+**Block reviewed:** `file:function` or line range
+**Edge case:** ...
+
+| Prompt | Student Answer (verbatim) | Checked By | Correct? |
+|---|---|---|---|
+| What it does and why | ... | Trace / run | Yes / Partly / No |
+| Prediction for the edge case | ... | Trace / run | Yes / No |
+| One suspected problem | ... | Review findings | Confirmed / Not found |
+
+**Rating:** Understood / Partial / Not yet
 
 ## Loop Decision
 Accept / Continue with fix / Rollback / Split issue / Ask for help
@@ -130,6 +158,7 @@ When this skill finishes, respond briefly and include:
 
 ```text
 Saved artifact: docs/ai-native/09-code-review.md
+Explanation check: Understood / Partial / Not yet
 Next recommended skill: <next-skill-or-human-review>
 ```
 
@@ -142,20 +171,23 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 - [ ] Findings are prioritized.
 - [ ] Unrelated changes are checked.
 - [ ] Security/privacy are considered.
-- [ ] Student explainability is tested.
+- [ ] The student explained one block and predicted one edge case **before** seeing the AI review, and the answers are saved verbatim.
+- [ ] The prediction was checked by tracing or running the code.
+- [ ] The loop is not accepted while the explanation check is Not yet.
 
 ## Common Pitfalls
 
 1. **Only checking if it compiles.** Working code may still violate intent.
 2. **Accepting AI summaries without reading diff.** Review evidence.
 3. **Over-focusing on style.** Correctness, scope, and safety come first.
+4. **Explaining before asking.** If the AI explains the code first, the student's explanation only repeats it. Ask first.
 
 ## Student Prompt Template
 
 ```text
 Use `review-the-code`.
 Here is the issue, relevant PRD/architecture, and code diff or changed files: [paste].
-Review whether the implementation satisfies the issue and PRD. Flag unrelated changes, bugs, security/privacy risks, missing tests, and what I must be able to explain.
+Before reviewing, pick one block and one edge case, and ask me to explain the block and predict the edge case in my own words. Then review whether the implementation satisfies the issue and PRD. Flag unrelated changes, bugs, security/privacy risks, missing tests, and what I must be able to explain.
 
 Save or update the artifact at `docs/ai-native/09-code-review.md`. End with `Saved artifact: docs/ai-native/09-code-review.md` and the next recommended skill.
 

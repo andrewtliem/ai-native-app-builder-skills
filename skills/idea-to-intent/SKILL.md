@@ -1,7 +1,7 @@
 ---
 name: idea-to-intent
 description: Use this skill to convert a pressure-tested app idea into a short Intent Brief that captures the project’s purpose, users, constraints, tradeoffs, and success criteria before a PRD is written.
-version: 1.0.0
+version: 1.1.0
 author: ATL / AI-Native App Builder Skill Pack
 ---
 
@@ -23,6 +23,7 @@ These skills are based on two YouTube talks about AI-native software engineering
 - **No vibe coding:** do not jump from idea directly to generated code without intent, design, and review.
 - **Small loops beat big guesses:** move one step at a time, verify, then continue.
 - **AI amplifies the system:** unclear intent creates faster confusion; clear intent creates faster learning.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 
@@ -33,7 +34,7 @@ These skills are based on two YouTube talks about AI-native software engineering
 ## Inputs
 
 - Grill result or revised app idea.
-- Student answers to the hard questions.
+- Student answers recorded in the Grill Transcript of `docs/ai-native/01-grill-my-idea.md`. Answers that exist only in chat are not a valid source; ask the student to add them to the grill artifact first.
 - Known class/project constraints.
 
 ## Process
@@ -45,6 +46,25 @@ These skills are based on two YouTube talks about AI-native software engineering
 5. Name important tradeoffs.
 6. Define success criteria that can be checked later.
 7. Record open questions instead of pretending they are solved.
+
+## Decision Provenance Gate
+
+This gate keeps the student's judgment visible as artifacts are chained. Tags: `[student]` = said by the student, `[ai-proposed]` = suggested by AI and not yet accepted, `[confirmed]` = suggested by AI and explicitly accepted by the student.
+
+**Before drafting**
+
+1. Scan the upstream artifacts (`docs/ai-native/01-grill-my-idea.md`) for `[ai-proposed]` items. If any remain, stop, list them, and ask the student to confirm, reject, or replace each one. Update the upstream artifact before continuing.
+2. If an upstream artifact has no provenance tags at all (made before this rule existed), ask the student to confirm its key decisions — user, problem, scope, success criteria — before relying on it.
+
+**While drafting**
+
+3. Carry tags forward: content derived from a `[student]` or `[confirmed]` item keeps that tag.
+4. Tag anything new the AI adds as `[ai-proposed]`. Typical examples: a secondary user, a constraint, a tradeoff, or a numeric success target the student never stated.
+
+**Before saving as final**
+
+5. Walk through each `[ai-proposed]` item with the student, one at a time. Accepted items become `[confirmed]`; rejected items are removed or rewritten in the student's words as `[student]`.
+6. Report the number of open `[ai-proposed]` items in the final response. The next skill will not start while it is above zero.
 
 ## Artifact Discipline
 
@@ -72,6 +92,8 @@ Before producing this skill's output, the agent must explicitly load the upstrea
 5. If the student pasted newer content than the saved file, ask whether to update the upstream artifact first before continuing.
 
 ## Output Format
+
+Every line under Primary User, User Problem, Goals, Non-Goals, Constraints, Tradeoffs, and Success Criteria ends with a provenance tag, for example `- Must work offline in v1 [student]`.
 
 ```markdown
 # Intent Brief
@@ -113,6 +135,7 @@ When this skill finishes, respond briefly and include:
 
 ```text
 Saved artifact: docs/ai-native/02-intent-brief.md
+Open ai-proposed items: <number, should be 0>
 Next recommended skill: <next-skill-or-human-review>
 ```
 
@@ -120,6 +143,7 @@ If you cannot write the file, say exactly why and do not pretend the artifact wa
 
 ## Quality Checklist
 
+- [ ] Every decision line carries a provenance tag and no `[ai-proposed]` items remain.
 - [ ] Intent is understandable without seeing the future app.
 - [ ] Goals and non-goals are both present.
 - [ ] Success criteria are observable.
