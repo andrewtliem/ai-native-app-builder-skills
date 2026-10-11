@@ -1,237 +1,133 @@
 # AI-Native App Builder Skill Pack
 
-A student-friendly skill pack for building software with AI while preserving **human judgment, traceability, verification, and reflection**.
-
-This is not a prompt collection for “make me an app.” It is a guided workflow that helps students move from a vague idea into a tested, explainable, demo-ready software project.
+A skill pack that guides students from a vague app idea to tested, explainable software built with AI, while the **decisions stay with the student**.
 
 > **Core mantra:** Delegate tasks, not judgment.
 
-AI can help draft, compare, implement, and review. The student remains responsible for intent, decisions, verification, and explanation.
-
----
-
-## Who This Is For
-
-This repo is for:
-
-- **Students** building apps with AI assistants.
-- **Lecturers / instructors** teaching AI-native software engineering.
-- **Bootcamp mentors** who want students to produce evidence, not only code.
-- **Self-learners** who want to move from vibe coding to disciplined app building.
-
-If you have ever asked AI to “build this app” and then felt lost reviewing the output, this skill pack is for you.
-
----
-
-## What You Will Learn
-
-By using the skills, students practice how to:
-
-1. Turn a raw idea into a clear project intent.
-2. Write a PRD that is specific enough to guide AI coding.
-3. Clarify vague requirements before coding.
-4. Design a simple architecture that matches the PRD.
-5. Break work into small implementation issues.
-6. Prompt AI one issue at a time.
-7. Review, test, and fix AI-generated code.
-8. Prove requirement coverage with traceability and evidence.
-9. Prepare an honest demo and postmortem.
-
-The goal is not “AI builds everything.” The goal is:
+AI drafts, compares, implements, and reviews. The student owns the intent, makes the decisions, verifies the result, and explains it.
 
 ```text
 clear intent → structured artifacts → small AI-assisted loops → verified software → student explanation
 ```
 
+**Who it is for:** students building apps with AI assistants, lecturers teaching AI-native software engineering, bootcamp mentors who want evidence rather than only code, and self-learners moving from vibe coding to disciplined building.
+
+---
+
+## Contents
+
+1. [How It Works](#how-it-works)
+2. [Choose Your Path](#choose-your-path)
+3. [Quick Start](#quick-start)
+4. [Skill Index](#skill-index)
+5. [Student Judgment Guards](#student-judgment-guards)
+6. [Artifact Rules](#artifact-rules)
+7. [For Instructors](#for-instructors)
+8. [Common Mistakes](#common-mistakes)
+9. [Repository Layout](#repository-layout)
+10. [Background](#background)
+
+---
+
+## How It Works
+
+Each skill reads the previous artifacts from disk, produces one new artifact in `docs/ai-native/`, and stops for the student to review it before the next skill runs. The skills are grouped into five bundles that follow a project from idea to demo.
+
+```mermaid
+flowchart TB
+    subgraph B1["1 · Starter — idea to PRD"]
+        direction LR
+        g[grill-my-idea] --> i[idea-to-intent] --> p[intent-to-prd]
+    end
+    subgraph B2["2 · Spec-Driven — make the PRD buildable"]
+        direction LR
+        c[project-constitution] --> q[clarify-prd] --> a[prd-to-architecture] --> s[architecture-to-issues] --> x[analyze-artifacts]
+    end
+    subgraph B3["3 · Build Loop — one issue at a time"]
+        direction LR
+        r[agent-rules] --> ip[issue-to-prompt] --> l[run-the-loop] --> v[review-the-code]
+        v -. next issue .-> ip
+    end
+    subgraph B4["4 · Quality Proof — evidence, not just a running app"]
+        direction LR
+        t[test-the-app] --> m[traceability-matrix] --> rt[red-team-my-app] --> cv[converge-the-app]
+    end
+    subgraph B5["5 · Demo & Reflection"]
+        direction LR
+        d[demo-ready] --> pm[postmortem]
+    end
+    B1 --> B2 --> B3 --> B4 --> B5
+
+    classDef mini fill:#1f6feb,stroke:#1f6feb,color:#ffffff
+    classDef course stroke:#1f6feb,stroke-width:2px
+    classDef capstone stroke-dasharray:5 4
+    class i,p,ip,l,t,d mini
+    class g,q,a,s,v,pm course
+    class c,x,r,m,rt,cv capstone
+```
+
+**Reading the diagram:** solid blue = Mini Path · blue outline = added in the Class Project Path · dashed = added in the Capstone Path. Every arrow is a stop where the student reads the saved artifact and decides whether to continue.
+
+Each bundle page has the copy-paste prompts and the teacher checkpoint for its stage:
+
+| Bundle | Use when | Main outputs |
+|---|---|---|
+| [01 · Starter](./bundles/01-starter/README.md) | You only have a raw idea | Grill report, Intent Brief, PRD |
+| [02 · Spec-Driven](./bundles/02-spec-driven/README.md) | Before any coding | Constitution, clarification log, architecture, issues, artifact analysis |
+| [03 · Build Loop](./bundles/03-build-loop/README.md) | During implementation | `AGENTS.md`, issue prompt, loop log, code review |
+| [04 · Quality Proof](./bundles/04-quality-proof/README.md) | Before submission | Test plan, traceability matrix, risk review, convergence report |
+| [05 · Demo & Reflection](./bundles/05-demo-reflection/README.md) | Before presenting | Demo script, postmortem |
+| [06 · Advanced](./bundles/06-advanced/README.md) | Larger or capstone projects | Feature folders, checklists, GitHub issue workflows |
+
 ---
 
 ## Choose Your Path
 
-You do **not** need to use all 18 skills for every project.
+You do not need all 18 skills for every project. Start small and add skills only when the project needs more evidence.
 
-Think of this repo as a toolkit with three paths:
-
-| Path | Best For | Skills Used | Outcome |
+| Path | Best for | Skills | Adds |
 |---|---|---:|---|
-| **Mini Path** | 1-week assignment, prototype, beginner practice | 6 | Simple app with basic intent, prompt, test, and demo |
-| **Class Project Path** | Normal course project | 12 | PRD, architecture, implementation loop, review, tests, demo, reflection |
-| **Capstone Path** | Final project, research, serious portfolio work | 18 | Full spec-driven workflow with traceability, risk review, and convergence |
+| **Mini** | 1-week assignment, prototype, first-time students | 6 | `idea-to-intent`, `intent-to-prd`, `issue-to-prompt`, `run-the-loop`, `test-the-app`, `demo-ready` |
+| **Class Project** | A normal multi-week course project | 12 | Mini + `grill-my-idea`, `clarify-prd`, `prd-to-architecture`, `architecture-to-issues`, `review-the-code`, `postmortem` |
+| **Capstone** | Final projects, research prototypes, serious portfolio work | 18 | Class + `project-constitution`, `analyze-artifacts`, `agent-rules`, `traceability-matrix`, `red-team-my-app`, `converge-the-app` |
 
-### Path 1 — Mini Path
+**Mini Path minimum artifacts:** `02-intent-brief.md`, `03-prd.md`, `07-issue-prompt.md`, `08-loop-log.md`, `10-test-plan.md`, `12-demo-script.md`.
 
-Use this for small assignments or first-time students.
-
-```text
-idea-to-intent
-intent-to-prd
-issue-to-prompt
-run-the-loop
-test-the-app
-demo-ready
-```
-
-**Use when:** the project is small, the student is new, or the goal is to practice AI-assisted building without overwhelming process.
-
-**Minimum artifacts:**
-
-```text
-docs/ai-native/02-intent-brief.md
-docs/ai-native/03-prd.md
-docs/ai-native/07-issue-prompt.md
-docs/ai-native/08-loop-log.md
-docs/ai-native/10-test-plan.md
-docs/ai-native/12-demo-script.md
-```
-
-### Path 2 — Class Project Path
-
-Use this for a normal multi-week class project.
-
-```text
-grill-my-idea
-idea-to-intent
-intent-to-prd
-clarify-prd
-prd-to-architecture
-architecture-to-issues
-issue-to-prompt
-run-the-loop
-review-the-code
-test-the-app
-demo-ready
-postmortem
-```
-
-**Use when:** students need enough structure to prevent vibe coding, but do not need the full capstone-level audit trail.
-
-### Path 3 — Capstone Path
-
-Use this for final projects, research prototypes, or serious portfolio apps.
-
-```text
-all 18 skills
-```
-
-This adds:
-
-```text
-project-constitution
-analyze-artifacts
-traceability-matrix
-red-team-my-app
-converge-the-app
-```
-
-**Use when:** the project needs stronger evidence, grading traceability, security/privacy review, or a clear “ready / not ready” decision.
-
-> Recommendation: start with the Mini Path. Add more skills only when the project becomes serious enough to need them.
+> **Recommendation:** start with the Mini Path. Move up when the project needs stronger traceability, a security/privacy review, or a clear ready / not-ready decision.
 
 ---
 
-## Repository Structure
+## Quick Start
 
-```text
-skills/      actual installable skills
-bundles/     classroom learning paths that group skills
-templates/   reusable artifact worksheets
-examples/    sample student-project artifact chains
-```
+### 1. Install the skills
 
-### Important distinction
-
-| Folder | Meaning |
-|---|---|
-| `skills/` | The actual skills installed into supported AI agents. |
-| `bundles/` | Tutorial paths that tell students which skills to use together. |
-| `templates/` | Blank worksheets for PRD, architecture, issues, traceability, etc. |
-| `examples/` | Future sample projects showing completed artifact chains. |
-
----
-
-## Quick Start for Students
-
-### Step 1 — Install the skills
-
-If your AI tool supports [`skills.sh`](https://skills.sh/), install the pack globally:
+With a tool that supports [`skills.sh`](https://skills.sh/):
 
 ```bash
+# all skills, globally
 npx -y skills add andrewtliem/ai-native-app-builder-skills --all -g
-```
 
-For Codex only:
-
-```bash
+# Codex only
 npx -y skills add andrewtliem/ai-native-app-builder-skills --agent codex --skill '*' -g -y
-```
 
-For one project only, run inside your project folder:
-
-```bash
+# current project only
 npx -y skills add andrewtliem/ai-native-app-builder-skills --all
-```
 
-Preview the available skills:
-
-```bash
+# preview what is available
 npx -y skills add andrewtliem/ai-native-app-builder-skills --list
 ```
 
-You should see skills such as:
+No `skills.sh`? See [Manual use](#manual-use-without-skillssh).
 
-```text
-grill-my-idea
-idea-to-intent
-intent-to-prd
-project-constitution
-clarify-prd
-prd-to-architecture
-architecture-to-issues
-analyze-artifacts
-issue-to-prompt
-run-the-loop
-review-the-code
-test-the-app
-traceability-matrix
-red-team-my-app
-converge-the-app
-demo-ready
-postmortem
-```
-
----
-
-### Step 2 — Create or open your app project
-
-Use an existing project folder or create a new one:
+### 2. Open your project folder
 
 ```bash
-mkdir my-ai-native-app
-cd my-ai-native-app
+mkdir my-ai-native-app && cd my-ai-native-app
 ```
 
-Every skill will save its output under:
+Every skill saves its artifact under `docs/ai-native/`.
 
-```text
-docs/ai-native/
-```
-
-Example:
-
-```text
-docs/ai-native/02-intent-brief.md
-docs/ai-native/03-prd.md
-docs/ai-native/04-architecture.md
-```
-
-Rule:
-
-> If it is not saved to a project file, it is not part of the project memory.
-
----
-
-### Step 3 — Start with Bundle 1
-
-Ask your AI assistant:
+### 3. Run the first skill
 
 ```text
 Use the grill-my-idea skill in classroom mode.
@@ -243,575 +139,218 @@ Interview me one question at a time and wait for my answer. Do not suggest answe
 Save my answers verbatim to docs/ai-native/01-grill-my-idea.md.
 ```
 
-Then continue:
-
-```text
-Use the idea-to-intent skill.
-Read docs/ai-native/01-grill-my-idea.md first.
-Create the Intent Brief and save it to docs/ai-native/02-intent-brief.md.
-```
-
-Then:
-
-```text
-Use the intent-to-prd skill.
-Read docs/ai-native/02-intent-brief.md first.
-Create the PRD and save it to docs/ai-native/03-prd.md.
-```
-
-Do not run all skills in one prompt. Move step by step.
+Then follow the prompts in [Bundle 01 · Starter](./bundles/01-starter/README.md). **Run one skill per prompt**, read the saved file, and only then continue.
 
 ---
 
-## The Bundle Tutorial
-
-The easiest way to use this repository is by following bundles **after you choose a path**.
-
-- If you are new, start with the **Mini Path** above.
-- If you are doing a normal class project, use the **Class Project Path** and selected bundles.
-- If this is a capstone or final project, use the full bundle sequence.
-
-| Bundle | Use When | Main Output |
-|---|---|---|
-| [`01-starter`](./bundles/01-starter/README.md) | You have a raw idea | Idea review, Intent Brief, PRD |
-| [`02-spec-driven`](./bundles/02-spec-driven/README.md) | Before coding | Constitution, clarification, architecture, issues, artifact analysis |
-| [`03-build-loop`](./bundles/03-build-loop/README.md) | During implementation | Agent rules, issue prompt, loop log, code review |
-| [`04-quality-proof`](./bundles/04-quality-proof/README.md) | Before submission | Test plan, traceability, risk review, convergence report |
-| [`05-demo-reflection`](./bundles/05-demo-reflection/README.md) | Before presentation | Demo script, postmortem |
-| [`06-advanced`](./bundles/06-advanced/README.md) | Larger projects | Feature folders, checklists, GitHub issue workflows |
-
----
-
-## Bundle 1 — Starter: From Raw Idea to PRD
-
-Use this when you only have an app idea.
-
-### Skills
-
-1. [`grill-my-idea`](./skills/grill-my-idea/SKILL.md)
-2. [`idea-to-intent`](./skills/idea-to-intent/SKILL.md)
-3. [`intent-to-prd`](./skills/intent-to-prd/SKILL.md)
-
-### Outputs
-
-```text
-docs/ai-native/01-grill-my-idea.md
-docs/ai-native/02-intent-brief.md
-docs/ai-native/03-prd.md
-```
-
-### Student prompts
-
-```text
-Use grill-my-idea in classroom mode.
-My app idea is: [idea].
-Interview me one question at a time before I write a PRD. Do not suggest answers.
-Save my answers verbatim to docs/ai-native/01-grill-my-idea.md.
-```
-
-```text
-Use idea-to-intent.
-Read docs/ai-native/01-grill-my-idea.md first.
-Create an Intent Brief.
-Save the output to docs/ai-native/02-intent-brief.md.
-```
-
-```text
-Use intent-to-prd.
-Read docs/ai-native/02-intent-brief.md first.
-Create a PRD with user stories, FR IDs, SC IDs, acceptance criteria, non-goals, and risks.
-Save the output to docs/ai-native/03-prd.md.
-```
-
-### Teacher checkpoint
-
-Before moving on, the student should be able to answer:
-
-- Who is the user?
-- What problem is being solved?
-- What is out of scope?
-- What would prove the app works?
-
----
-
-## Bundle 2 — Spec-Driven: Make the PRD Buildable
-
-This bundle is inspired by GitHub Spec Kit’s spec-driven development workflow, adapted for students.
-
-### Skills
-
-1. [`project-constitution`](./skills/project-constitution/SKILL.md)
-2. [`clarify-prd`](./skills/clarify-prd/SKILL.md)
-3. [`prd-to-architecture`](./skills/prd-to-architecture/SKILL.md)
-4. [`architecture-to-issues`](./skills/architecture-to-issues/SKILL.md)
-5. [`analyze-artifacts`](./skills/analyze-artifacts/SKILL.md)
-
-### Outputs
-
-```text
-docs/ai-native/14-project-constitution.md
-docs/ai-native/15-clarification-log.md
-docs/ai-native/04-architecture.md
-docs/ai-native/05-issues.md
-docs/ai-native/16-artifact-analysis.md
-```
-
-### Student prompts
-
-```text
-Use project-constitution.
-Read docs/ai-native/03-prd.md first.
-Create non-negotiable project principles and quality gates.
-Save the output to docs/ai-native/14-project-constitution.md.
-```
-
-```text
-Use clarify-prd.
-Read docs/ai-native/03-prd.md and docs/ai-native/14-project-constitution.md first.
-Ask up to 5 high-impact clarification questions, one at a time.
-Show your recommended default only after I answer.
-Save the log to docs/ai-native/15-clarification-log.md.
-```
-
-```text
-Use prd-to-architecture.
-Read the PRD, constitution, and clarification log first.
-Create a simple architecture plan with data model, contracts, research notes, risks, and requirement mapping.
-Save the output to docs/ai-native/04-architecture.md.
-```
-
-```text
-Use architecture-to-issues.
-Read the PRD and architecture first.
-Break the work into small issues with T### IDs, US/FR/SC links, likely files, acceptance criteria, and verification.
-Save the output to docs/ai-native/05-issues.md.
-```
-
-```text
-Use analyze-artifacts.
-Read the PRD, constitution, architecture, and issues first.
-Find contradictions, missing coverage, vague requirements, and traceability gaps.
-Save the report to docs/ai-native/16-artifact-analysis.md.
-```
-
-### Teacher checkpoint
-
-Before coding, the student should have:
-
-- Requirement IDs: `FR-001`, `FR-002`, etc.
-- User story IDs: `US-001`, `US-002`, etc.
-- Success criteria IDs: `SC-001`, `SC-002`, etc.
-- Small issues that map back to requirements.
-- A clean artifact analysis with no critical gaps.
-
----
-
-## Bundle 3 — Build Loop: Prompt, Build, Review, Fix
-
-Use this bundle during implementation. Do **one issue at a time**.
-
-### Skills
-
-1. [`agent-rules`](./skills/agent-rules/SKILL.md)
-2. [`issue-to-prompt`](./skills/issue-to-prompt/SKILL.md)
-3. [`run-the-loop`](./skills/run-the-loop/SKILL.md)
-4. [`review-the-code`](./skills/review-the-code/SKILL.md)
-
-### Outputs
-
-```text
-AGENTS.md
-docs/ai-native/07-issue-prompt.md
-docs/ai-native/08-loop-log.md
-docs/ai-native/09-code-review.md
-```
-
-### Student workflow
-
-For each issue:
-
-```text
-issue → prompt → build → review → test → fix → decide
-```
-
-### Student prompts
-
-```text
-Use agent-rules.
-Read the PRD, architecture, and issues first.
-Create AGENTS.md so AI assistants follow this project’s intent, stack, style, and verification rules.
-```
-
-```text
-Use issue-to-prompt.
-Read docs/ai-native/05-issues.md and select Issue [number].
-Create one focused coding prompt for that issue only.
-Save the output to docs/ai-native/07-issue-prompt.md.
-```
-
-```text
-Use run-the-loop.
-Run one safe AI-assisted build loop for this issue.
-Record build steps, review notes, test results, fixes, and the final decision.
-Save the log to docs/ai-native/08-loop-log.md.
-```
-
-```text
-Use review-the-code.
-Read the issue, PRD, architecture, and loop log.
-Before reviewing, ask me to explain one block and predict one edge case in my own words.
-Then review the implementation against the requirement IDs and flag must-fix items.
-Save the review to docs/ai-native/09-code-review.md.
-```
-
-### Teacher checkpoint
-
-The student should show:
-
-- The issue they worked on.
-- The prompt they gave AI.
-- The code diff or changed files.
-- Review findings.
-- Test or manual evidence.
-- A decision: accept, fix, rollback, split, or ask for help.
-
----
-
-## Bundle 4 — Quality Proof: Test, Trace, Red-Team, Converge
-
-Use this before submission. This bundle turns “the app runs” into “the app is supported by evidence.”
-
-### Skills
-
-1. [`test-the-app`](./skills/test-the-app/SKILL.md)
-2. [`traceability-matrix`](./skills/traceability-matrix/SKILL.md)
-3. [`red-team-my-app`](./skills/red-team-my-app/SKILL.md)
-4. [`converge-the-app`](./skills/converge-the-app/SKILL.md)
-
-### Outputs
-
-```text
-docs/ai-native/10-test-plan.md
-docs/ai-native/17-traceability-matrix.md
-docs/ai-native/11-risk-review.md
-docs/ai-native/18-convergence-report.md
-```
-
-### Student prompts
-
-```text
-Use test-the-app.
-Read the PRD, issues, loop log, and code review first.
-Create a test plan where each test names the US/FR/SC ID it verifies.
-Save the output to docs/ai-native/10-test-plan.md.
-```
-
-```text
-Use traceability-matrix.
-Read the PRD, architecture, issues, and test plan first.
-Map every requirement to user story, architecture component, issue, test/check, evidence, and status.
-Save the output to docs/ai-native/17-traceability-matrix.md.
-```
-
-```text
-Use red-team-my-app.
-Read the PRD, architecture, and current app behavior.
-Find misuse, privacy, security, reliability, accessibility, and UX risks.
-Save the output to docs/ai-native/11-risk-review.md.
-```
-
-```text
-Use converge-the-app.
-Read all project artifacts and inspect the current implementation.
-Compare the app against intended requirements and list done, missing, partial, contradictory, and unrequested work.
-Save the report to docs/ai-native/18-convergence-report.md.
-```
-
-### Teacher checkpoint
-
-The student should have evidence for:
-
-- What requirements are covered.
-- What tests or manual checks passed.
-- What risks remain.
-- What is missing or partial.
-- Whether the app is ready, not ready, or ready with limitations.
-
----
-
-## Bundle 5 — Demo & Reflection
-
-Use this before presentation or after a milestone.
-
-### Skills
-
-1. [`demo-ready`](./skills/demo-ready/SKILL.md)
-2. [`postmortem`](./skills/postmortem/SKILL.md)
-
-### Outputs
-
-```text
-docs/ai-native/12-demo-script.md
-docs/ai-native/13-postmortem.md
-```
-
-### Student prompts
-
-```text
-Use demo-ready.
-Read the PRD, test plan, traceability matrix, risk review, and convergence report first.
-Create a clear demo script with problem statement, walkthrough, evidence, limitations, and next steps.
-Save the output to docs/ai-native/12-demo-script.md.
-```
-
-```text
-Use postmortem.
-Read all major project artifacts.
-Reflect on what worked, what failed, how AI helped or misled, what was verified, and what should improve next time.
-Save the output to docs/ai-native/13-postmortem.md.
-```
-
-### Teacher checkpoint
-
-The student should be able to explain:
-
-- What they built.
-- Why they built it.
-- Which requirements are proven.
-- What AI generated.
-- What they personally verified.
-- What they would improve next.
-
----
-
-## Bundle 6 — Advanced Use
-
-Use this for capstone projects, stronger teams, or larger apps.
-
-Advanced students may organize each feature like this:
-
-```text
-docs/ai-native/features/001-login/
-├── spec.md
-├── plan.md
-├── data-model.md
-├── contracts.md
-├── tasks.md
-├── tests.md
-└── evidence.md
-```
-
-Possible advanced workflows:
-
-- Convert issues into GitHub issues.
-- Use separate feature folders for large apps.
-- Create custom checklists for privacy, UX, accessibility, or grading.
-- Use multiple AI agents only after PRD, architecture, and issues are stable.
-
----
-
-## Complete Skill Index
-
-| # | Skill | Use It To | Artifact |
-|---:|---|---|---|
-| 01 | [`grill-my-idea`](./skills/grill-my-idea/SKILL.md) | Challenge a raw app idea | `docs/ai-native/01-grill-my-idea.md` |
-| 02 | [`idea-to-intent`](./skills/idea-to-intent/SKILL.md) | Create an Intent Brief | `docs/ai-native/02-intent-brief.md` |
-| 03 | [`intent-to-prd`](./skills/intent-to-prd/SKILL.md) | Create a PRD | `docs/ai-native/03-prd.md` |
-| 04 | [`project-constitution`](./skills/project-constitution/SKILL.md) | Define project principles | `docs/ai-native/14-project-constitution.md` |
-| 05 | [`clarify-prd`](./skills/clarify-prd/SKILL.md) | Remove ambiguity | `docs/ai-native/15-clarification-log.md` |
-| 06 | [`prd-to-architecture`](./skills/prd-to-architecture/SKILL.md) | Design the system | `docs/ai-native/04-architecture.md` |
-| 07 | [`architecture-to-issues`](./skills/architecture-to-issues/SKILL.md) | Create small implementation issues | `docs/ai-native/05-issues.md` |
-| 08 | [`analyze-artifacts`](./skills/analyze-artifacts/SKILL.md) | Check consistency before coding | `docs/ai-native/16-artifact-analysis.md` |
-| 09 | [`agent-rules`](./skills/agent-rules/SKILL.md) | Create AI rules / AGENTS.md | `AGENTS.md` |
-| 10 | [`issue-to-prompt`](./skills/issue-to-prompt/SKILL.md) | Create one focused coding prompt | `docs/ai-native/07-issue-prompt.md` |
-| 11 | [`run-the-loop`](./skills/run-the-loop/SKILL.md) | Build one issue safely | `docs/ai-native/08-loop-log.md` |
-| 12 | [`review-the-code`](./skills/review-the-code/SKILL.md) | Review AI-generated code | `docs/ai-native/09-code-review.md` |
-| 13 | [`test-the-app`](./skills/test-the-app/SKILL.md) | Create test plan and evidence | `docs/ai-native/10-test-plan.md` |
-| 14 | [`traceability-matrix`](./skills/traceability-matrix/SKILL.md) | Map requirements to proof | `docs/ai-native/17-traceability-matrix.md` |
-| 15 | [`red-team-my-app`](./skills/red-team-my-app/SKILL.md) | Find risks before demo | `docs/ai-native/11-risk-review.md` |
-| 16 | [`converge-the-app`](./skills/converge-the-app/SKILL.md) | Compare app against intended artifacts | `docs/ai-native/18-convergence-report.md` |
-| 17 | [`demo-ready`](./skills/demo-ready/SKILL.md) | Prepare final demo | `docs/ai-native/12-demo-script.md` |
-| 18 | [`postmortem`](./skills/postmortem/SKILL.md) | Reflect and improve | `docs/ai-native/13-postmortem.md` |
-
-> **About artifact numbers:** file numbers (`01-` … `18-`) are stable IDs, not run order. For example, `14-project-constitution.md` and `15-clarification-log.md` are created before `04-architecture.md`. Follow the bundle order for sequence.
-
----
-
-## Artifact System
-
-Every downstream skill must load files from disk before drafting the next artifact.
-
-Required behavior:
-
-1. Check that upstream artifact files exist.
-2. Read upstream files from the current project, not only from chat history.
-3. If a required file is missing, stop and ask the student to run the previous skill or provide the missing artifact.
-4. Save the new artifact only after the source files have been read.
-5. Add a `Sources Read` section to each saved artifact.
-
-Why this matters:
-
-- Chat history disappears.
-- AI agents hallucinate if they rely on memory.
-- Project artifacts create a visible evidence trail.
-- Teachers can grade process, not only the final app.
+## Skill Index
+
+| # | Skill | Purpose | Artifact | Bundle |
+|---:|---|---|---|---|
+| 01 | [`grill-my-idea`](./skills/grill-my-idea/SKILL.md) | Interview the student to pressure-test a raw idea | `01-grill-my-idea.md` | 01 |
+| 02 | [`idea-to-intent`](./skills/idea-to-intent/SKILL.md) | Capture purpose, users, constraints, success criteria | `02-intent-brief.md` | 01 |
+| 03 | [`intent-to-prd`](./skills/intent-to-prd/SKILL.md) | Write a PRD with `US`, `FR`, `SC` IDs | `03-prd.md` | 01 |
+| 04 | [`project-constitution`](./skills/project-constitution/SKILL.md) | Define non-negotiable principles and quality gates | `14-project-constitution.md` | 02 |
+| 05 | [`clarify-prd`](./skills/clarify-prd/SKILL.md) | Resolve up to five high-impact ambiguities | `15-clarification-log.md` | 02 |
+| 06 | [`prd-to-architecture`](./skills/prd-to-architecture/SKILL.md) | Design the system, with read-back diagrams | `04-architecture.md` | 02 |
+| 07 | [`architecture-to-issues`](./skills/architecture-to-issues/SKILL.md) | Break work into small `T###` issues | `05-issues.md` | 02 |
+| 08 | [`analyze-artifacts`](./skills/analyze-artifacts/SKILL.md) | Find contradictions and gaps before coding | `16-artifact-analysis.md` | 02 |
+| 09 | [`agent-rules`](./skills/agent-rules/SKILL.md) | Write project rules for AI assistants | `AGENTS.md` | 03 |
+| 10 | [`issue-to-prompt`](./skills/issue-to-prompt/SKILL.md) | Turn one issue into one focused prompt | `07-issue-prompt.md` | 03 |
+| 11 | [`run-the-loop`](./skills/run-the-loop/SKILL.md) | Build, test, fix, and decide for one issue | `08-loop-log.md` | 03 |
+| 12 | [`review-the-code`](./skills/review-the-code/SKILL.md) | Explanation check, then review against requirement IDs | `09-code-review.md` | 03 |
+| 13 | [`test-the-app`](./skills/test-the-app/SKILL.md) | Tests that each name the IDs they verify | `10-test-plan.md` | 04 |
+| 14 | [`traceability-matrix`](./skills/traceability-matrix/SKILL.md) | Map every requirement to proof | `17-traceability-matrix.md` | 04 |
+| 15 | [`red-team-my-app`](./skills/red-team-my-app/SKILL.md) | Find misuse, privacy, security, and UX risks | `11-risk-review.md` | 04 |
+| 16 | [`converge-the-app`](./skills/converge-the-app/SKILL.md) | Compare the app against its intended artifacts | `18-convergence-report.md` | 04 |
+| 17 | [`demo-ready`](./skills/demo-ready/SKILL.md) | Prepare an honest demo script | `12-demo-script.md` | 05 |
+| 18 | [`postmortem`](./skills/postmortem/SKILL.md) | Reflect on what AI helped, misled, and what was verified | `13-postmortem.md` | 05 |
+
+> **Artifact numbers are stable IDs, not run order.** For example, `14-project-constitution.md` and `15-clarification-log.md` are created before `04-architecture.md`. Follow the bundle order for sequence.
 
 ---
 
 ## Student Judgment Guards
 
-The pipeline makes it easy for AI to draft every artifact. These guards make sure the decisions inside those artifacts are still the student's.
+A pipeline like this makes it easy for AI to draft every artifact, including the decisions inside it. These guards keep those decisions visibly the student's.
 
-### Decision provenance
+### 1. Decision provenance
 
-Every line that states a user, problem, scope, constraint, requirement, success criterion, or architecture decision carries a tag:
+Every line that states a user, problem, scope, requirement, success criterion, or architecture decision carries a tag that says who decided it:
 
 | Tag | Meaning |
 |---|---|
-| `[student]` | The student said this in their own words. |
-| `[ai-proposed]` | AI suggested it and the student has not accepted it yet. |
-| `[confirmed]` | AI suggested it and the student explicitly accepted it. |
+| `[student]` | The student said it in their own words. |
+| `[ai-proposed]` | AI suggested it; the student has not accepted it yet. |
+| `[confirmed]` | AI suggested it; the student explicitly accepted it. |
 
-`idea-to-intent`, `intent-to-prd`, `project-constitution`, and `prd-to-architecture` run a **Decision Provenance Gate**: they stop when an upstream artifact still has `[ai-proposed]` items, and they walk the student through every new AI proposal before saving. Each of these skills reports `Open ai-proposed items` in its final response.
+```mermaid
+stateDiagram-v2
+    state "[ai-proposed]" as ai_proposed
+    state "[confirmed]" as confirmed
+    state "[student]" as student
+    [*] --> ai_proposed: AI adds a suggestion
+    [*] --> student: Student states it
+    ai_proposed --> confirmed: Student accepts
+    ai_proposed --> student: Student rewrites it in own words
+    ai_proposed --> [*]: Student rejects
+    note right of ai_proposed
+        The next skill will not start
+        while any item is still here
+    end note
+```
 
-### Classroom mode (default)
+`idea-to-intent`, `intent-to-prd`, `project-constitution`, and `prd-to-architecture` run a **Decision Provenance Gate**. They stop if an upstream artifact still has `[ai-proposed]` items, and each reports `Open ai-proposed items` when it finishes.
+
+### 2. Classroom mode (default)
+
+The student commits to an answer before seeing what AI would choose.
+
+```mermaid
+sequenceDiagram
+    actor S as Student
+    participant AI
+    participant Log as Artifact file
+    AI->>S: One question and why it matters
+    S->>AI: Answer in own words
+    AI->>S: Reveal AI default and its reason
+    alt keeps own answer
+        S->>Log: Decision tagged [student]
+    else switches to the default
+        S->>Log: Decision tagged [confirmed] with a reason in own words
+    end
+    Note over AI,S: Repeat one question at a time
+```
 
 | Skill | Classroom mode behavior |
 |---|---|
-| `grill-my-idea` | An interview, not a questionnaire: one question at a time, no suggested answers, student answers saved verbatim. |
-| `clarify-prd` | The student answers first; the AI default is shown afterwards. The log records the first answer, the default, the final decision, and the student's reason for any change, plus a default-match count. |
-| `review-the-code` | Before the AI review, the student explains one block and predicts one edge case. A loop cannot be accepted while the explanation check is `Not yet`. |
+| `grill-my-idea` | An interview, not a questionnaire. No suggested answers. Student answers saved verbatim. |
+| `clarify-prd` | Student answers first; the AI default comes after. The log keeps first answer, default, final decision, reason for change, and a default-match count. |
+| `review-the-code` | Before the AI review, the student explains one block and predicts one edge case. A loop cannot be accepted while the check is `Not yet`. |
 
-Practitioner mode is available when the instructor or user asks for it explicitly.
+Practitioner mode is available when the instructor or user explicitly asks for it.
 
-### Read-back diagrams
+### 3. Read-back diagrams
 
-`prd-to-architecture` adds Mermaid diagrams only where prose is easy to misread (entity lifecycles, multi-party flows, related entities). Every behavior a diagram shows that the PRD does not state is listed as a read-back assumption for the student to confirm or reject. A rejection means the PRD needs fixing before coding.
+`prd-to-architecture` adds Mermaid diagrams only where prose is easy to misread: entity lifecycles, flows with several parties, and related entities. Any behavior a diagram shows that the PRD does not state becomes a **read-back assumption** for the student to confirm or reject. A rejection means the PRD must be fixed before coding.
 
-### What instructors can check
-
-- Grill transcript: did the student answer, or did the AI?
-- Count of `[student]` vs `[confirmed]` decisions in the Intent Brief and PRD.
-- Default-match count in the clarification log, and the reasons for changes.
-- Explanation check rating in each code review.
-
-See [`examples/simple-todo-app`](./examples/simple-todo-app/README.md) for a full chain where the student rejects AI suggestions and a wrong prediction exposes a real bug.
+See the [simple todo app example](./examples/simple-todo-app/README.md) for the full chain: the student rejects three AI suggestions with reasons, and a wrong edge-case prediction exposes a real validation bug.
 
 ---
 
-## Spec-Driven Additions Borrowed From GitHub Spec Kit
+## Artifact Rules
 
-This repo adapts several ideas from GitHub Spec Kit for university students:
+> If it is not saved to a project file, it is not part of the project memory.
 
-| Spec Kit idea | Student-friendly adaptation |
+Every skill follows the same protocol:
+
+1. Check that the upstream artifact files exist in `docs/ai-native/`.
+2. Read them from disk, not from chat history.
+3. If one is missing, stop and ask the student to run the earlier skill.
+4. Write the new artifact with a `Sources Read` section listing the files actually read.
+5. End with `Saved artifact:` and `Next recommended skill:`, then wait for the student.
+
+This is what lets an instructor grade the **process**, not only the final app: chat disappears, files remain.
+
+---
+
+## For Instructors
+
+### A 5-week flow
+
+| Week | Student activity | Bundle |
+|---:|---|---|
+| 1 | Frame the idea | [01 · Starter](./bundles/01-starter/README.md) |
+| 2 | Specify and design | [02 · Spec-Driven](./bundles/02-spec-driven/README.md) |
+| 3 | Build issue by issue | [03 · Build Loop](./bundles/03-build-loop/README.md) |
+| 4 | Prove it works | [04 · Quality Proof](./bundles/04-quality-proof/README.md) |
+| 5 | Demo and reflect | [05 · Demo & Reflection](./bundles/05-demo-reflection/README.md) |
+
+Each bundle page ends with a **teacher checkpoint**: what the student should be able to show before moving on.
+
+### Suggested grading categories
+
+| Category | Evidence |
 |---|---|
-| Constitution | `project-constitution` defines non-negotiable rules and quality gates. |
-| Clarification | `clarify-prd` asks up to 5 important questions before architecture. |
-| Requirement IDs | PRDs use `US-###`, `FR-###`, and `SC-###`. |
-| Artifact analysis | `analyze-artifacts` checks PRD, architecture, and issues before coding. |
-| Traceability | `traceability-matrix` maps requirements to issues, tests, and evidence. |
-| Convergence | `converge-the-app` compares the implemented app against intended artifacts. |
+| Student judgment | Grill transcript, provenance tags, reasons in the clarification log |
+| Intent clarity | Intent Brief and PRD |
+| Design quality | Architecture and issues |
+| AI process discipline | Issue prompt, loop log, code review with explanation check |
+| Verification | Test plan and traceability matrix |
+| Responsibility | Risk review, convergence report, postmortem |
 
-The goal is not to copy Spec Kit exactly. The goal is to make spec-driven thinking practical for students.
+### Quick signals worth checking
 
----
-
-## Templates
-
-Reusable templates live in [`templates/`](./templates/):
-
-- [`prd-template.md`](./templates/prd-template.md)
-- [`constitution-template.md`](./templates/constitution-template.md)
-- [`architecture-template.md`](./templates/architecture-template.md)
-- [`issue-template.md`](./templates/issue-template.md)
-- [`artifact-analysis-template.md`](./templates/artifact-analysis-template.md)
-- [`traceability-matrix-template.md`](./templates/traceability-matrix-template.md)
-- [`convergence-report-template.md`](./templates/convergence-report-template.md)
-- [`checklist-template.md`](./templates/checklist-template.md)
-
-Use these manually if your AI tool does not support skills.
+- **Grill transcript:** are the answers the student's words, or polished AI prose?
+- **`[student]` vs `[confirmed]`:** a project made almost entirely of `[confirmed]` decisions deserves a conversation.
+- **Default-match count** in the clarification log: matching every AI default is not wrong, but the student should be able to defend each choice.
+- **Explanation check rating** in each code review.
 
 ---
 
-## Manual Use Without skills.sh
+## Common Mistakes
 
-If your agent does not support `skills.sh`, clone the repository:
+| Mistake | Instead |
+|---|---|
+| Running every skill in one prompt | One skill per prompt. Read the artifact. Decide. |
+| Letting AI invent the app | AI may suggest; the student owns the intent. |
+| Rubber-stamping AI defaults | Answer first, then compare. Record a reason whenever you switch. |
+| Letting answers live only in chat | Save grill and clarification answers verbatim in the artifact. |
+| Ignoring saved files | Always read `docs/ai-native/` before continuing. |
+| Accepting AI code without review | Explain the code before the review; the loop is not accepted otherwise. |
+| Treating a working demo as proof | Show requirement coverage in the traceability matrix. |
+
+---
+
+## Repository Layout
+
+```text
+skills/      installable skills (one SKILL.md each)
+bundles/     learning paths: which skills to use together, prompts, teacher checkpoints
+templates/   blank worksheets for PRD, architecture, issues, traceability, and more
+examples/    a complete student-project artifact chain (simple todo app)
+```
+
+### Templates
+
+Use these by hand if your AI tool does not support skills: [PRD](./templates/prd-template.md) · [Constitution](./templates/constitution-template.md) · [Architecture](./templates/architecture-template.md) · [Issue](./templates/issue-template.md) · [Artifact analysis](./templates/artifact-analysis-template.md) · [Traceability matrix](./templates/traceability-matrix-template.md) · [Convergence report](./templates/convergence-report-template.md) · [Checklist](./templates/checklist-template.md)
+
+### Manual use without skills.sh
 
 ```bash
 git clone https://github.com/andrewtliem/ai-native-app-builder-skills.git
 ```
 
-Then open the relevant `SKILL.md` file under `skills/` and paste or reference it in your AI assistant.
-
-Example:
+Then point your assistant at the skill file:
 
 ```text
 Use the instructions from skills/intent-to-prd/SKILL.md.
-Here is my Intent Brief: ...
+Read docs/ai-native/02-intent-brief.md first.
 Save the PRD to docs/ai-native/03-prd.md.
 ```
 
 ---
 
-## Instructor Usage
+## Background
 
-A simple 5-week class flow:
+### Ideas adapted from GitHub Spec Kit
 
-| Week | Student Activity | Skills |
-|---:|---|---|
-| 1 | Idea framing | `grill-my-idea`, `idea-to-intent`, `intent-to-prd` |
-| 2 | Spec and design | `project-constitution`, `clarify-prd`, `prd-to-architecture`, `architecture-to-issues`, `analyze-artifacts` |
-| 3 | Implementation loop | `agent-rules`, `issue-to-prompt`, `run-the-loop`, `review-the-code` |
-| 4 | Quality proof | `test-the-app`, `traceability-matrix`, `red-team-my-app`, `converge-the-app` |
-| 5 | Demo and reflection | `demo-ready`, `postmortem` |
-
-Suggested grading categories:
-
-| Category | Evidence |
+| Spec Kit idea | Adaptation for students |
 |---|---|
-| Student judgment | Grill transcript + provenance tags + clarification reasons |
-| Intent clarity | Intent Brief + PRD |
-| Design quality | Architecture + issues |
-| AI process discipline | Prompt + loop log + code review (explanation check) |
-| Verification | Test plan + traceability matrix |
-| Responsibility | Risk review + convergence report + postmortem |
+| Constitution | `project-constitution` defines non-negotiable rules and quality gates. |
+| Clarification | `clarify-prd` asks up to five questions before architecture, answer-first. |
+| Requirement IDs | PRDs use `US-###`, `FR-###`, and `SC-###`. |
+| Artifact analysis | `analyze-artifacts` checks PRD, architecture, and issues before coding. |
+| Traceability | `traceability-matrix` maps requirements to issues, tests, and evidence. |
+| Convergence | `converge-the-app` compares the built app against the intended artifacts. |
 
----
+The goal is not to copy Spec Kit exactly, but to make spec-driven thinking practical for students.
 
-## Common Mistakes to Avoid
+### Teaching philosophy
 
-1. **Running every skill in one prompt**  
-   Move stage by stage. Read the artifact. Make a human decision.
-
-2. **Letting AI invent the app**  
-   AI may suggest, but the student owns the intent.
-
-3. **Skipping verification**  
-   A working demo is not the same as requirement coverage.
-
-4. **Ignoring saved files**  
-   Always read artifacts from `docs/ai-native/` before continuing.
-
-5. **Accepting AI code without review**  
-   Students must understand and explain the code they submit.
-
-6. **Rubber-stamping AI defaults**  
-   Answer first, then compare with the AI's recommendation. Record a reason whenever you switch.
-
-7. **Letting answers live only in chat**  
-   Grill and clarification answers must be saved verbatim in the artifact, or the next skill cannot use them.
-
----
-
-## Teaching Philosophy
-
-This skill pack is based on two YouTube talks that shaped ATL’s thinking about AI-native software engineering:
+This pack is shaped by two talks on AI-native software engineering, read through ATL's own teaching perspective (other educators may draw different lessons):
 
 - https://www.youtube.com/watch?v=q_Jq4IgYImk
 - https://www.youtube.com/watch?v=VTYx7Ex-0bA
-
-The interpretation here is ATL’s own reading of those ideas. Other educators may draw different lessons from the same videos.
-
-For ATL, the main lesson is this:
 
 > AI-native engineering is not about generating more code faster. It is about clearer intent, better systems, stronger verification, and human judgment.
