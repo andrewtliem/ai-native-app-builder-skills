@@ -8,8 +8,8 @@
 
 | Skill | Role |
 |---|---|
-| `12-demo-ready` | Prepare demo script, evidence list, limitations, and next steps. |
-| `13-postmortem` | Reflect on what worked, failed, was verified, and should improve. |
+| `demo-ready` | Prepare demo script, evidence list, limitations, and next steps. |
+| `postmortem` | Reflect on what worked, failed, was verified, and should improve. |
 
 ## Expected Student Artifacts
 

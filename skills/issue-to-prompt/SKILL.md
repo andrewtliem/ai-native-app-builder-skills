@@ -23,6 +23,7 @@ These skills are based on two YouTube talks about AI-native software engineering
 - **No vibe coding:** do not jump from idea directly to generated code without intent, design, and review.
 - **Small loops beat big guesses:** move one step at a time, verify, then continue.
 - **AI amplifies the system:** unclear intent creates faster confusion; clear intent creates faster learning.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 

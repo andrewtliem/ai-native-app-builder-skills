@@ -8,11 +8,11 @@
 
 | Skill | Role |
 |---|---|
-| `14-project-constitution` | Define non-negotiable project principles and quality gates. |
-| `15-clarify-prd` | Ask up to five important questions to remove ambiguity. |
-| `04-prd-to-architecture` | Turn the PRD into technical architecture and design decisions. |
-| `05-architecture-to-issues` | Break architecture into small implementation issues. |
-| `16-analyze-artifacts` | Check PRD, constitution, architecture, and issues for gaps and contradictions. |
+| `project-constitution` | Define non-negotiable project principles and quality gates. |
+| `clarify-prd` | Ask up to five important questions to remove ambiguity. |
+| `prd-to-architecture` | Turn the PRD into technical architecture and design decisions. |
+| `architecture-to-issues` | Break architecture into small implementation issues. |
+| `analyze-artifacts` | Check PRD, constitution, architecture, and issues for gaps and contradictions. |
 
 ## Expected Student Artifacts
 

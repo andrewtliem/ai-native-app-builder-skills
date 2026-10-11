@@ -8,10 +8,10 @@
 
 | Skill | Role |
 |---|---|
-| `06-agent-rules` | Create AGENTS.md or project rules for AI assistants. |
-| `07-issue-to-prompt` | Turn one issue into a focused AI coding prompt. |
-| `08-run-the-loop` | Run one build/review/test/fix loop. |
-| `09-review-the-code` | Review generated code against intent, architecture, safety, and explainability. |
+| `agent-rules` | Create AGENTS.md or project rules for AI assistants. |
+| `issue-to-prompt` | Turn one issue into a focused AI coding prompt. |
+| `run-the-loop` | Run one build/review/test/fix loop. |
+| `review-the-code` | Review generated code against intent, architecture, safety, and explainability. |
 
 ## Expected Student Artifacts
 

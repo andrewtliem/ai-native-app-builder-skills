@@ -29,6 +29,7 @@ These skills are based on two YouTube talks about AI-native software engineering
 - **No vibe coding:** do not jump from a vague idea into an endless AI coding session.
 - **Small loops beat big guesses:** one issue, one build attempt, one review, one test cycle, then decide.
 - **AI amplifies the system:** a good loop accelerates learning; a bad loop accelerates confusion and technical debt.
+- **Mark who decided:** every decision in an artifact is tagged `[student]`, `[ai-proposed]`, or `[confirmed]` so the student's judgment stays visible.
 
 ## When to Use
 

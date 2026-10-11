@@ -16,11 +16,11 @@
 | SC-004 | Refresh persistence check | Manual test in browser. |
 
 ## Stack Choice
-- Frontend: Vite + React + TypeScript.
-- Styling: plain CSS.
-- Storage: `localStorage`.
-- Backend: none.
-- Auth: none.
+- Frontend: Vite + React + TypeScript. `[confirmed]` (student: “React is what we use in the web course.”)
+- Styling: plain CSS. `[confirmed]`
+- Storage: `localStorage`. `[student]`
+- Backend: none. `[student]`
+- Auth: none. `[student]`
 
 ## System Parts
 - `App`: owns task state and filter state.
@@ -43,6 +43,47 @@
 | Entity | Fields | Relationships | Validation |
 |---|---|---|---|
 | Task | id, title, course, dueDate?, completed, createdAt | none | title and course required |
+
+## Diagrams
+
+Only one flow is easy to misread in prose: saving and loading when storage can fail. The Task entity has just two states (open, done), so it gets no state diagram.
+
+### Sequence: save and load (reader: student and reviewer; checks: storage failure paths match FR-007 and the clarification log)
+
+```mermaid
+sequenceDiagram
+    actor S as Student
+    participant A as App
+    participant St as storage.ts
+    participant L as localStorage
+    S->>A: Add or toggle a task
+    A->>St: saveTasks(tasks)
+    St->>L: setItem("tasks", JSON)
+    alt localStorage unavailable
+        L-->>St: error
+        St-->>A: save failed
+        A-->>S: Warning, tasks kept in memory for this session
+    end
+    Note over S,L: On next app load
+    A->>St: loadTasks()
+    St->>L: getItem("tasks")
+    alt stored JSON is invalid
+        St-->>A: empty list
+        A-->>S: Warning, starting with an empty list
+    else valid
+        St-->>A: Task[]
+    end
+```
+
+## Read-Back Assumptions
+
+Behavior shown in the diagram or data model that the PRD does not state.
+
+| # | Assumption | Where It Appears | Student Decision | PRD / Clarification Update | Tag |
+|---|---|---|---|---|---|
+| A1 | Tasks are saved after every add or toggle, not with a Save button | Sequence: save and load | Confirm — “A Save button is one more thing to forget.” | Added to FR-007 wording | `[confirmed]` |
+| A2 | Invalid stored JSON starts an empty list with a warning | Sequence: save and load | Confirm — “It's a class demo, losing broken data is acceptable for v1. I'll mention it as a limitation.” | Listed as a known limitation | `[confirmed]` |
+| A3 | `createdAt` is stored on every task | Data model | Confirm — “Needed to keep the list in order.” | None; implementation detail | `[confirmed]` |
 
 ## Contracts
 
@@ -77,4 +118,5 @@
 - Invalid stored JSON: reset to empty list with warning.
 
 Saved artifact: docs/ai-native/04-architecture.md
+Open ai-proposed items: 0
 Next recommended skill: architecture-to-issues
